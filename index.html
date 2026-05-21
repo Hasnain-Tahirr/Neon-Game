@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neon Dodge</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>NEON DODGE</h1>
+
+    <div class="game">
+
+      <!-- START SCREEN -->
+      <div id="startScreen">
+        <h2>Neon Dodge</h2>
+        <button id="startBtn">Start Game</button>
+      </div>
+
+      <!-- PLAYER -->
+      <div id="player"></div>
+
+      <!-- GAME OVER -->
+      <div id="gameOver">
+        <h2>Game Over</h2>
+        <button onclick="restartGame()">Play Again</button>
+      </div>
+
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls">
+      <button id="left">⬅ Left</button>
+      <button id="right">Right ➡</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
