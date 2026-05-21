@@ -1,6 +1,9 @@
 // GAME AREA
 const game = document.querySelector(".game");
 
+// SCORE TEXT
+const scoreText = document.getElementById("score");
+
 // PLAYER
 const player = document.getElementById("player");
 
@@ -13,6 +16,7 @@ const gameOverScreen = document.getElementById("gameOver");
 const startScreen = document.getElementById("startScreen");
 const startBtn = document.getElementById("startBtn");
 
+
 // PLAYER POSITION
 let playerLeft = game.clientWidth / 2 - 35;
 
@@ -22,8 +26,11 @@ let gameRunning = false;
 // BALL SPEED
 let ballSpeed = 4;
 
-// BALL SPAWN TIME
+// BALL SPAWN RATE
 let spawnRate = 1000;
+
+// SCORE
+let score = 0;
 
 // PLAYER START POSITION
 player.style.left = playerLeft + "px";
@@ -61,7 +68,7 @@ rightBtn.addEventListener("click", () => {
 
 
 
-// MOVE LEFT FUNCTION
+// MOVE LEFT
 function moveLeft(){
 
   if(playerLeft > 0){
@@ -76,7 +83,7 @@ function moveLeft(){
 
 
 
-// MOVE RIGHT FUNCTION
+// MOVE RIGHT
 function moveRight(){
 
   if(playerLeft < game.clientWidth - 70){
@@ -97,7 +104,7 @@ function createBall(){
   // STOP IF GAME OVER
   if(!gameRunning) return;
 
-  // NEW BALL
+  // CREATE NEW BALL
   const ball = document.createElement("div");
 
   ball.classList.add("ball");
@@ -107,9 +114,10 @@ function createBall(){
 
   ball.style.left = randomX + "px";
 
+  // ADD BALL IN GAME
   game.appendChild(ball);
 
-  // BALL TOP
+  // BALL TOP POSITION
   let ballTop = -40;
 
   // BALL FALL
@@ -124,7 +132,7 @@ function createBall(){
 
     }
 
-    // MOVE BALL
+    // MOVE BALL DOWN
     ballTop += ballSpeed;
 
     ball.style.top = ballTop + "px";
@@ -151,11 +159,19 @@ function createBall(){
 
 
 
-    // REMOVE BALL
+    // REMOVE BALL IF OUTSIDE GAME
     if(ballTop > game.clientHeight){
 
+      // SCORE INCREASE
+      score++;
+
+      // UPDATE SCORE TEXT
+      scoreText.innerText = "Score: " + score;
+
+      // STOP BALL
       clearInterval(fall);
 
+      // REMOVE BALL
       ball.remove();
 
     }
@@ -225,19 +241,21 @@ function restartGame(){
 
   location.reload();
 
-};
+}
+
+
 
 // KEYBOARD CONTROLS
 document.addEventListener("keydown",(e) => {
 
-  // LEFT KEY
+  // LEFT ARROW
   if(e.key === "ArrowLeft"){
 
     moveLeft();
 
   }
 
-  // RIGHT KEY
+  // RIGHT ARROW
   if(e.key === "ArrowRight"){
 
     moveRight();
